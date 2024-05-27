@@ -1,0 +1,72 @@
+{% extends 'admin_header.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+   <body class="inner_page login">
+      <div class="full_container">
+         <div class="container">
+            <div class="center verticle_center full_height">
+               <div class="signup_section">
+                  <div class="logo_signup">
+                     <div class="center">
+                        <img width="250" height="150" src="{% static 'images/logo/logo.png' %}" />
+                     </div>
+                  </div>
+                  {% if msg %}
+                 <center><b style="color: blue;">{{msg}}</b></center>
+                   {% endif %}
+                  <div class="login_form">
+                     <form name="signupform" action="{% url 'signup' %}" enctype="multipart/form-data" method="post" class="signup-form">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="field">
+                            <div class="field">
+                              <label class="label_field">User Type</label>
+                              <select class="u-full-width bg-light" name="usertype" required >
+                               <option>---Select User Type---</option>
+                               <option value="superadmin">Super Admin</option>
+                               <option value="admin">Admin</option>
+                               <option value="user">User</option>
+                              </select>
+                           </div>
+                              <label class="label_field">Full Name</label>
+                              <input type="text" name="name" placeholder="name" required />
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Email Address</label>
+                              <input type="email" name="email" placeholder="E-mail" required />
+                           </div>
+                            <div class="field">
+                              <label class="label_field">Mobile</label>
+                              <input type="mobile" name="mobile" placeholder="mobile" required  />
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Address</label>
+                              <input type="tex" name="address" placeholder="Address" required />
+                           </div>
+                            <div class="field">
+                              <label class="label_field">Password</label>
+                              <input type="password" name="password" placeholder="password" required />
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Conf Password</label>
+                              <input type="password" name="conform_password" placeholder="Conform Password" required/>
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Profile Image</label>
+                              <input type="file" name="profile_picture" class="fa fa-user">
+                           </div>
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button class="main_bt">Sing Up</button>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'user_header.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="Eng">
+<head>
+<title>Edit Customer</title>
+</head>
+<body>
+
+   <div class="container">
+            <div class="center verticle_center full_height">
+               <div class="signup_section">
+                   <center><h3>Edit Customer Details </h3></center>
+                  <div class="logo_signup">
+                     <div class="center">
+                        <img width="auto" src="{% static 'images/logo/logo.png' %}" style="width:200px;height:150px;"/>
+                     </div>
+                  </div>
+                  {% if msg %}
+                 <center><b style="color: blue;">{{msg}}</b></center>
+                   {% endif %}
+                  <div class="login_form">
+                     <form name="Customerform" action="{% url 'edit_cust' pk=customer.pk %}"  method="post" class="customer-form">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="field">
+                              <label class="label_field">Full Name</label>
+                              <input type="text" name="custname" value="{{customer.fname}}" required />
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Mobile</label>
+                              <input type="text" name="custmobile" value="{{customer.mobile}}" required />
+                           </div>
+                            <div class="field">
+                              <label class="label_field">Email</label>
+                              <input type="email" name="custemail" value="{{customer.email}}" readonly  />
+                           </div>
+                           <div class="field">
+                              <label class="label_field"> Address</label>
+                              <input type="text" name="custaddress" value="{{customer.address}}" required />
+                           </div>
+                            <div class="field">
+                              <a class="forgot" href="{% url 'backcustpage' %}">Back</a>
+                           </div>
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button class="main_bt">Update Details</button>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+</body>
+
+</html>
+{% endblock %}

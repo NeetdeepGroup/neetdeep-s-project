@@ -1,0 +1,76 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="Eng">
+<head>
+<title>Add Product</title>
+</head>
+<body>
+<br>
+<br>
+
+   <div class="container">
+            <div class="center verticle_center full_height">
+               <div class="signup_section">
+                  <div class="logo_signup">
+                     <div class="center">
+                        <img width="auto" src="{% static 'images/logo/logo.png' %}" alt="#" />
+                     </div>
+                  </div>
+                  {% if msg %}
+                 <center><b style="color: blue;">{{msg}}</b></center>
+
+                   {% endif %}
+                  <div class="login_form">
+                     <form name="productform" action="{% url 'add_product'  %}" enctype="multipart/form-data" method="post" class="product-form">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="field">
+                         <div class="field">
+                              <label class="label_field">Product Type</label>
+                          <select class="u-full-width bg-light" name="product_category">
+							  <option>---Select Category---</option>
+							  <option value="Zigbee">Zigbee</option>
+							  <option value="Wifi">Wifi</option>
+							  <option value="Wired">Wired</option>
+							  <option value="Security">Security</option>
+							  <option value="Other">Other</option>
+						  </select>
+                         </div>
+                              <label class="label_field">Product Name</label>
+                              <input type="text" name="proname" placeholder="Pro Name" required />
+                           </div>
+                           <div class="field">
+                              <label class="label_field">QTY</label>
+                              <input type="tex" name="qty" placeholder="qty" required />
+                           </div>
+                            <div class="field">
+                              <label class="label_field">Price</label>
+                              <input type="price" name="price" placeholder="price" required  />
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Product Detail</label>
+                              <input type="tex" name="prodetail" placeholder="Product Detail" required />
+                           </div>
+
+                           <div class="field">
+                              <label class="label_field">Product Image</label>
+                              <input type="file" name="product_picture"> <i class="fa fa-file-photo-o"></i>
+                           </div>
+
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button class="main_bt">Add Product</button>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+</body>
+
+</html>
+{% endblock %}

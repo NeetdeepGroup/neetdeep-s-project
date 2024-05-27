@@ -1,0 +1,77 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+   <body class="inner_page login">
+      <div class="full_container">
+         <div class="container">
+            <div class="center verticle_center full_height">
+               <div class="user_section">
+                  <div class="logo_signup">
+                     <div class="center">
+                        <img width="250" height="150" src="{% static 'images/logo/logo.png' %}" />
+                     </div>
+                  </div>
+                  {% if msg %}
+                 <center><b style="color: blue;">{{msg}}</b></center>
+                   {% endif %}
+                  <div class="login_form">
+                     <form name="userform" action="{% url 'user_edit' pk=user.pk%}" method="POST" class="User-form">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="field">
+                              <label class="label_field">User Type</label>
+                                {% if user.usertype == "superadmin" %}
+                              <select class="u-full-width bg-light" name="usertype" required >
+                                <option>---Select User Type---</option>
+                               <option value="superadmin" selected>Super Admin</option>
+                               <option value="admin">Admin</option>
+                               <option value="user">User</option>
+                              </select>
+                            {% elif user.usertype == "admin" %}
+                          <select class="u-full-width bg-light" name="usertype" required >
+                               <option>---Select User Type---</option>
+                               <option value="superadmin">Super Admin</option>
+                               <option value="admin" selected>Admin</option>
+                               <option value="user">User</option>
+                          </select>
+                            {% elif user.usertype == "user" %}
+                            <select class="u-full-width bg-light" name="usertype" required >
+                            <option>---Select User Type---</option>
+                           <option value="superadmin">Super Admin</option>
+                           <option value="admin">Admin</option>
+                           <option value="user" selected>User</option>
+                        </select>
+
+                            {% endif %}
+
+                            <div class="field">
+                              <label class="label_field">Full Name</label>
+                              <input type="text" name="name" value="{{user.name}}" readonly />
+                           </div>
+
+                              <label class="label_field">Email Address</label>
+                              <input type="email" name="email" value="{{user.email}}" readonly />
+                           </div>
+                            <div class="field">
+                              <label class="label_field">Mobile</label>
+                              <input type="mobile" name="mobile" value="{{user.mobile}}" readonly  />
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Address</label>
+                              <input type="tex" name="address" value="{{user.address}}" readonly />
+                           </div>
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button class="main_bt">Update</button>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
+{% endblock %}

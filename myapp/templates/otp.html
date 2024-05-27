@@ -1,0 +1,42 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+   <body class="inner_page login">
+      <div class="full_container">
+         <div class="container">
+            <div class="center verticle_center full_height">
+               <div class="login_section">
+                  <div class="logo_login">
+                     <div class="center">
+                        <img width="210" src="{% static 'images/logo/logo.png' %}" alt="#" />
+                     </div>
+                  </div>
+                  {% if msg %}
+		          <center><b style="color: blue;">{{msg}}</b></center>
+                    <br>
+                {% endif %}
+                  <div class="login_form">
+                    <form name="chan_passform" action="{% url 'verify_otp' %}" method="POST" class="chan_pass-form">
+                        {% csrf_token %}
+                        <fieldset>
+                            <input type="hidden" name="email" value="{{email}}" required/>
+                            <input type="hidden" name="otp"  value="{{otp}}" required/>
+                            <div class="field">
+                              <label class="label_field">Enter OTP</label>
+                              <input type="text" name="uotp" placeholder="otp" required/>
+                           </div>
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button class="main_bt">Verify OTP</button>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
+{% endblock %}

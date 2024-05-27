@@ -1,0 +1,32 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('',views.index,name='index'),
+    path('login/',views.login,name='login'),
+    path('signup/',views.signup,name='signup'),
+    path('logout/',views.logout,name='logout'),
+    path('profile/',views.profile,name='profile'),
+    path('user_edit/<int:pk>/',views.user_edit,name='user_edit'),
+    path('user_delete/<int:pk>/',views.user_delete,name='user_delete'),
+    path('user_info/',views.user_info,name='user_info'),
+    path('profile_update/',views.profile_update,name='profile_update'),
+    path('change_pass/',views.change_pass,name='change_pass'),
+    path('forgot_password/',views.forgot_password,name='forgot_password'),
+    path('new_password/',views.new_password,name='new_password'),
+    path('verify_otp/',views.verify_otp,name='verify_otp'),
+    path('invoice/',views.invoice,name='invoice'),
+    path('icons/',views.icons,name='icons'),
+    path('contact/',views.contact,name='contact'),
+    path('add_product/',views.add_product,name='add_product'),
+    path('show_product/',views.show_product,name='show_product'),
+    path('add_Customer/',views.add_Customer,name='add_Customer'),
+    path('show_customer/',views.show_customer,name='show_customer'),
+    path('edit_cust/<int:pk>/',views.edit_cust,name='edit_cust'),
+    path('edit_product/<int:pk>/',views.edit_product,name='edit_product'),
+    path('delete_cust/<int:pk>/',views.delete_cust,name='delete_cust'),
+    path('delete_product/<int:pk>/',views.delete_product,name='delete_product'),
+    path('make_quot/<int:pk>/',views.make_quot,name='make_quot'),
+    path('backcustpage/',views.backcustpage,name='backcustpage'),
+    path('backpropage/',views.backpropage,name='backpropage'),
+]

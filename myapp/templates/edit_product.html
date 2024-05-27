@@ -1,0 +1,60 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="Eng">
+<head>
+<title>Add Product</title>
+</head>
+<body>
+<br>
+<br>
+
+   <div class="container">
+            <div class="center verticle_center full_height">
+               <div class="signup_section">
+                  <div class="logo_signup">
+                     <div class="center">
+                        <img width="auto" src="{% static 'images/logo/logo.png' %}" alt="#" />
+                     </div>
+                  </div>
+                  {% if msg %}
+                 <center><b style="color: blue;">{{msg}}</b></center>
+                   {% endif %}
+
+                  <div class="login_form">
+                     <form name="productform" action="{% url 'edit_product' pk=product.pk %}" method="POST" class="product-form">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="field">
+                         <div class="field">
+                         </div>
+                              <label class="label_field">Product Name</label>
+                              <input type="text" name="proname" value="{{product.proname}}" required />
+                           </div>
+                            <div class="field">
+                              <label class="label_field">Price</label>
+                              <input type="text" name="price" value="{{product.price}}" required />
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Product Detail</label>
+                              <input type="text" name="prodetail" value="{{product.prodetail}}" required />
+                           </div>
+                             <div class="field">
+                              <a class="forgot" href="{% url 'backpropage' %}">Back</a>
+                           </div>
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button class="main_bt">Update Product</button>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+</body>
+
+</html>
+{% endblock %}

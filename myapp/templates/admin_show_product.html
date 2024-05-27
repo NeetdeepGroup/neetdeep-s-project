@@ -1,0 +1,33 @@
+{% extends 'admin_header.html' %}
+{% load static %}
+{% block content %}
+<center><h3>All Product of this site</h3></center>
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col">Product name</th>
+			<th scope="col">Product Images</th>
+	      <th scope="col">Product Type</th>
+	      <th scope="col">Product Price</th>
+	      <th scope="col">Edit</th>
+	      <th scope="col">Delete</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for i in products %}
+	    <tr>
+	      <th scope="row">{{i.proname}}</th>
+		  <th scope="row"><img src="{{i.product_picture.url}}" alt="Books" class="product-image" style="width:70px;" ></th>
+	      <td>{{i.product_category}}</td>
+	      <td>{{i.price}}</td>
+	      <td><a class="btn btn-primary" href="{% url 'edit_product' pk=i.id %}">Edit</a></td>
+	      <td>
+	      	<a class="btn btn-primary" href="{% url 'delete_product' pk=i.id %}">Delete</a>
+	      	</form>
+	      </td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>	
+	</table>	
+        
+{% endblock %}

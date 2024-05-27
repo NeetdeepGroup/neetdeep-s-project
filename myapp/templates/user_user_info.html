@@ -1,0 +1,33 @@
+{% extends 'user_header.html' %}
+{% load static %}
+{% block content %}
+<center><h3>All User </h3></center>
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+		  <th scope="col">User Type</th>
+	      <th scope="col">User Name</th>
+		  <th scope="col">Mobile</th>
+	      <th scope="col">Email</th>
+	      <th scope="col">Address</th>
+		  <th scope="col">Edit</th>
+	      <th scope="col">Delete</th>
+
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for i in user %}
+	    <tr>
+		  <td scope="row">{{i.usertype}}</td>
+	      <td scope="row">{{i.name}}</td>
+	      <td>{{i.mobile}}</td>
+	      <td>{{i.email}}</td>
+		  <td>{{i.address}}</td>
+	      <td><a class="btn btn-primary" href="{% url 'user_edit' pk=i.pk%}">Edit</a></td>
+	      <td><a class="btn btn-primary" href="{% url 'user_delete' pk=i.pk%}">Delete</a></td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>	
+	</table>	
+        
+{% endblock %}

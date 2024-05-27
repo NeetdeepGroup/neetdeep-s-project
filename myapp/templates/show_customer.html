@@ -1,0 +1,33 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<center><h3>All Customer </h3></center>
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col">Customer name</th>
+		  <th scope="col">Mobile</th>
+	      <th scope="col">Email</th>
+	      <th scope="col">Address</th>
+		  <th scope="col">Edit</th>
+	      <th scope="col">Delete</th>
+		  <th scope="col">Quot</th>
+
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	{% for i in customer %}
+	    <tr>
+	      <td scope="row">{{i.fname}}</td>
+	      <td>{{i.mobile}}</td>
+	      <td>{{i.email}}</td>
+		  <td>{{i.address}}</td>
+	      <td><a class="btn btn-primary" href="{% url 'edit_cust' pk=i.id %}">Edit</a></td>
+	      <td><a class="btn btn-primary" href="{% url 'delete_cust' pk=i.id %}">Delete</a></td>
+		  <td><a class="btn btn-primary" href="{% url 'make_quot' pk=i.id %}">Make Quot</a></td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>	
+	</table>	
+        
+{% endblock %}

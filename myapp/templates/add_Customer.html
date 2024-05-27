@@ -1,0 +1,59 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="Eng">
+<head>
+<title>Add Customer</title>
+</head>
+<body>
+<br>
+<br>
+
+   <div class="container">
+            <div class="center verticle_center full_height">
+               <div class="signup_section">
+                   <center><h3>Add Customer Details </h3></center>
+                  <div class="logo_signup">
+                     <div class="center">
+                        <img width="auto" src="{% static 'images/logo/logo.png' %}" style="width:200px;height:150px;"/>
+                     </div>
+                  </div>
+                  {% if msg %}
+                 <center><b style="color: blue;">{{msg}}</b></center>
+                   {% endif %}
+                  <div class="login_form">
+                     <form name="Customerform" action="{% url 'add_Customer' %}" method="post" class="customer-form">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="field">
+                              <label class="label_field">Full Name</label>
+                              <input type="text" name="custname" placeholder="Cust Name" required />
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Mobile</label>
+                              <input type="tex" name="custmobile" placeholder="Cust-Mobile" required />
+                           </div>
+                            <div class="field">
+                              <label class="label_field">Email</label>
+                              <input type="email" name="custemail" placeholder="Email" required  />
+                           </div>
+                           <div class="field">
+                              <label class="label_field"> Address</label>
+                              <input type="tex" name="custaddress" placeholder="Address" required />
+                           </div>
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button class="main_bt">Add Customer</button>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+</body>
+
+</html>
+{% endblock %}

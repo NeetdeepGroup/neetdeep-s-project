@@ -1,0 +1,81 @@
+{% extends 'admin_header.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+               <div class="midde_cont">
+                  <div class="container-fluid">
+                     <div class="row column_title">
+                        <div class="col-md-12">
+                           <div class="page_title">
+                              <h2>Profile</h2>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- row -->
+                     <div class="row column1">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                           <div class="white_shd full margin_bottom_30">
+                              <div class="full graph_head">
+                                 <div class="heading1 margin_0">
+                                    <h2>User profile</h2>
+                                 </div>
+                              </div>
+                              <div class="full price_table padding_infor_info">
+                                 <div class="row">
+                                    <div class="col-lg-12">
+                                       <div class="full dis_flex center_text">
+                                          <div class="profile_img"><img width="180" class="rounded-circle" src="{% static 'images/layout_img/jalak_img.jpg' %}" alt="#" /></div>
+                                          <div class="profile_contant">
+                                             <div class="contact_inner">
+                                                <h3>{{user.username}}</h3>
+                                                <ul class="list-unstyled">
+                                                   <li><i class="fa fa-envelope-o"></i> : {{user.email}}</li>
+                                                   <li><i class="fa fa-phone"></i> : {{user.mobile}}</li>
+                                                </ul>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="center verticle_center full_height">
+               <div class="signup_section">
+                   <center><h3>Update Details </h3></center>
+                  {% if msg %}
+                 <center><b style="color: blue;">{{msg}}</b></center>
+                   {% endif %}
+                  <div class="login_form">
+                     <form name="Userform" action="{% url 'profile_update' %}" method="POST" class="User-form">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="field">
+                              <label class="label_field">Full Name</label>
+                              <input type="text" name="username" value="{{user.name}}" required />
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Mobile</label>
+                              <input type="text" name="usermobile" value="{{user.mobile}}" required />
+                           </div>
+                            <div class="field">
+                              <label class="label_field">Email</label>
+                              <input type="email" name="useremail" value="{{user.email}}" readonly  />
+                           </div>
+                           <div class="field">
+                              <label class="label_field"> Address</label>
+                              <input type="text" name="useraddress" value="{{user.address}}" required />
+                           </div>
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button class="main_bt">Update</button>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+{% endblock %}
