@@ -25,7 +25,7 @@ def login(request):
 			if user.password == request.POST['password']:
 				request.session['email'] = user.email
 				request.session['name'] = user.name
-				profile_picture = request.session['profile_picture']=user.profile_picture.url
+				request.session['profile_picture']=user.profile_picture.url
 				contact = Contact.objects.all()
 				if user.usertype=='superadmin':
 					return render(request, 'index.html', {'user': user})
@@ -113,12 +113,17 @@ def profile(request):
 		return render(request, 'admin_profile.html', {'user': user})
 	else:
 		return render(request,'user_profile.html',{'user':user})
+
 def profile_update(request):
 	user = User.objects.get(email=request.session['email'])
 	user.name = request.POST['username']
 	user.mobile = request.POST['usermobile']
 	user.email = request.POST['useremail']
 	user.address = request.POST['useraddress']
+	try:
+		user.profile_picture = request.FILES['profile_picture']
+	except:
+		pass
 	user.save()
 	msg = "Your Profile Has Been Updated"
 	if user.usertype == 'superadmin':

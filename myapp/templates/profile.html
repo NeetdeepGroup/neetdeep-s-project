@@ -25,7 +25,7 @@
                                  <div class="row">
                                     <div class="col-lg-12">
                                        <div class="full dis_flex center_text">
-                                          <div class="profile_img"><img width="180" class="rounded-circle" src="{% static 'images/layout_img/jalak_img.jpg' %}" alt="#" /></div>
+                                          <div class="profile_img"><img width="180" class="rounded-circle" src={{user.profile_picture.url}}/></div>
                                           <div class="profile_contant">
                                              <div class="contact_inner">
                                                 <h3>{{user.username}}</h3>
@@ -51,7 +51,7 @@
                  <center><b style="color: blue;">{{msg}}</b></center>
                    {% endif %}
                   <div class="login_form">
-                     <form name="Userform" action="{% url 'profile_update' %}" method="POST" class="User-form">
+                     <form name="Userform" action="{% url 'profile_update' %}" enctype="multipart/form-data" method="POST" class="User-form">
                         {% csrf_token %}
                         <fieldset>
                             <div class="field">
@@ -69,6 +69,10 @@
                            <div class="field">
                               <label class="label_field"> Address</label>
                               <input type="text" name="useraddress" value="{{user.address}}" required />
+                           </div>
+                             <div class="field">
+                            <label class="label_field"> Picture</label>
+                            <input type="file" name="profile_picture" class="u-full-width bg-light">
                            </div>
                            <div class="field margin_0">
                               <label class="label_field hidden">hidden label</label>
